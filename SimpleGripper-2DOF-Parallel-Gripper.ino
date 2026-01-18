@@ -32,6 +32,31 @@ void setup() {
 void loop() {
   // Servo control using ch7 (Wrist)
   if (ch7 == 180) {
-    servo1Pos +=
+    servo1Pos += 10;
+    if (servo1Pos > 180) servo1Pos = 180;
+    myservo1.write(servo1Pos);
+    Serial.print("Wrist Position: ");
+    Serial.println(servo1Pos);
+  } else if (ch7 == 0 ) {
+    servo1Pos -= 10;
+    if (servo1Pos < 0) servo1Pos = 0;
+    myservo1.write(servo1Pos);
+    Serial.print("Wrist Position: ");
+    Serial.println(servo1Pos);
   }
+
+    // Servo control using ch5 (Claw). servo2Pos = 63 is the limit of how much the claw can close so that it doesn't break.
+    if (ch5 == 180) {
+        servo2Pos += 4;
+        if (servo2Pos > 63) servo2Pos = 63;
+        myservo2.write(servo2Pos);
+        Serial.print("Claw Position: ");
+        Serial.println(servo2Pos);
+    } else if (ch5 == 0 ) {
+        servo2Pos -= 4;
+        if (servo2Pos < 0) servo2Pos = 0;
+        myservo2.write(servo2Pos);
+        Serial.print("Claw Position: ");
+        Serial.println(servo2Pos);
+    }
 }
