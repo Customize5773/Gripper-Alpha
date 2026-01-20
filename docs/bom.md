@@ -48,6 +48,3 @@
 | Pliers | Needle nose, side cutters |
 
 ---
-
-**Total Estimated Cost:** $25-50 (depending on component quality)  
-**Availability:** All components available from Amazon, Adafruit, SparkFun, or local electronics retailers

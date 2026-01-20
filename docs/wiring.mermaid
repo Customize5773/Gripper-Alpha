@@ -1,0 +1,87 @@
+```mermaid
+graph TD
+    %% Arduino Board
+    subgraph Arduino[Arduino Uno/Nano]
+        direction LR
+        A_5V[5V Pin]
+        A_GND[GND Pin]
+        A_9[Digital Pin 9]
+        A_A0[Analog Pin A0]
+    end
+    
+    %% Power Supply
+    PS[5V Power Supply<br/>2-3A Regulated]
+    
+    %% Servo Motor
+    subgraph Servo[Servo Motor 180°]
+        direction LR
+        S_VCC[Red: VCC +5V]
+        S_GND[Black/Brown: GND]
+        S_SIG[Yellow/Orange: Signal]
+    end
+    
+    %% Potentiometer
+    subgraph Pot[10kΩ Potentiometer]
+        direction LR
+        P_VCC[Left Pin: VCC]
+        P_GND[Right Pin: GND]
+        P_OUT[Middle Pin: Wiper/Output]
+    end
+    
+    %% Optional Components
+    subgraph Optional[Optional Components]
+        direction LR
+        Cap[100µF Capacitor]
+        LED[Status LED]
+    end
+    
+    %% Wiring Connections
+    %% Power Distribution
+    PS -- "+5V Power" --> A_5V
+    PS -- "+5V Power" --> S_VCC
+    PS -- "+5V Power" --> P_VCC
+    
+    %% Ground Connections
+    A_GND -- "Common Ground" --> PS
+    A_GND -- "Common Ground" --> S_GND
+    A_GND -- "Common Ground" --> P_GND
+    
+    %% Signal Connections
+    A_9 -- "PWM Signal" --> S_SIG
+    P_OUT -- "Analog Voltage (0-5V)" --> A_A0
+    
+    %% Optional Connections
+    Cap -- "Across VCC/GND" --> S_VCC
+    Cap -- "Stabilize Power" --> S_GND
+    
+    %% Styling
+    classDef arduino fill:#4CAF50,stroke:#388E3C,stroke-width:2px
+    classDef power fill:#F44336,stroke:#D32F2F,stroke-width:2px
+    classDef servo fill:#2196F3,stroke:#1976D2,stroke-width:2px
+    classDef pot fill:#FF9800,stroke:#F57C00,stroke-width:2px
+    classDef optional fill:#9C27B0,stroke:#7B1FA2,stroke-width:2px,stroke-dasharray:5 5
+    
+    class Arduino arduino
+    class PS power
+    class Servo servo
+    class Pot pot
+    class Optional optional
+    
+    %% Connection Styles
+    linkStyle 0,1,2 stroke:#F44336,stroke-width:3px,stroke-dasharray:5 5
+    linkStyle 3,4,5 stroke:#000000,stroke-width:2px
+    linkStyle 6 stroke:#4CAF50,stroke-width:3px
+    linkStyle 7 stroke:#FF9800,stroke-width:3px
+    linkStyle 8,9 stroke:#9C27B0,stroke-width:2px,stroke-dasharray:5 5
+    
+    %% Legend
+    subgraph Legend[Connection Legend]
+        L1[Red: Power Lines]
+        L2[Black: Ground Lines]
+        L3[Green: PWM Signal]
+        L4[Orange: Analog Signal]
+        L5[Purple: Optional]
+    end
+    
+    style Legend fill:#f9f9f9,stroke:#ccc,stroke-width:1px
+```

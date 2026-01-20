@@ -6,7 +6,7 @@ gripper-control/
 │
 ├── docs/
 │   ├── system-overview.md
-│   ├── wiring.png
+│   ├── wiring.mermaid
 │   └── bom.md
 │
 ├── firmware/
